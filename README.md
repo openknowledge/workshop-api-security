@@ -15,23 +15,64 @@ docker compose up --build
 
 from within the folder you cloned the repository.
 
-# Exercises
+# Exercise JWT
 
-You find the exercises in the corresponding branches
+You can access the keycloak authentication server via http://localhost:9191/auth/admin/
 
-* [Exercise JWT](https://github.com/openknowledge/workshop-api-security/tree/jwt)
-* [Exercise Client Credential Flow](https://github.com/openknowledge/workshop-api-security/tree/client-credential)
-* [Exercise Excessive Data Exposure](https://github.com/openknowledge/workshop-api-security/tree/excessive-data-exposure)
-* [Exercise Rate Limiting](https://github.com/openknowledge/workshop-api-security/tree/rate-limiting)
-* [Exercise Domain Object Security](https://github.com/openknowledge/workshop-api-security/tree/domain-object-security)
+## Available users
+
+The following users with their passwords and roles are available:
+
+* admin / admin123 (role admin)
+* erika / erika123 (role user)
+* max / max123 (role user)
+* james / james123 (role user)
+
+## Receiving a token 
+
+Use the following request to receive a token:
+```
+POST http://localhost:9191/auth/realms/master/protocol/openid-connect/token
+```
+Header:
+```
+Content-Type: application/x-www-form-urlencoded
+```
+Body:
+```
+grant_type:password
+client_id:onlineshop
+username:erika
+password:erika123
+```
+
+## Analyse the token
+
+The received token is base64-encoded. You can analyse it on [_JWT.io_](https://jwt.io)
+
+## Call the application
+
+With the following requests you can get a list of all users (only allowed as admin):
+```
+GET http://localhost:4000/customers
+```
+Header:
+```
+Authorization: Bearer <token>
+```
+
+With the following requests you can get the details of a specific user:
+```
+GET http://localhost:4000/customers/<customer number>
+```
+Header:
+```
+Authorization: Bearer <token>
+```
 
 ## Troubleshooting (Mac M1 processor)
 
 The keycloak image used in some of the excercises
 is not compatible with the new M1 processor of Mac.
-In order to run the samples, you have to build the container from scratch:
-
-```
-git clone git clone https://github.com/keycloak/keycloak-containers.git keycloak/containers
-docker build -t jboss/keycloak:14.0.0 ./keycloak
-```
+In order to run the samples, please checkout main branch first
+and follow the instructions there

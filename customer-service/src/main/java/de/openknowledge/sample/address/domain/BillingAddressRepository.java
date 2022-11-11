@@ -31,8 +31,10 @@ import javax.ws.rs.core.Response;
 
 import org.apache.johnzon.jaxrs.jsonb.jaxrs.JsonbJaxrsProvider;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import de.openknowledge.sample.customer.domain.CustomerNumber;
+import de.openknowledge.sample.jwt.infrastructure.JwtClientFilter;
 
 @ApplicationScoped
 public class BillingAddressRepository {
@@ -44,11 +46,14 @@ public class BillingAddressRepository {
     @ConfigProperty(name = "billing-service.url")
     String billingServiceUrl;
 
+    @Inject
+    JsonWebToken token;
+
     Client client;
 
     @PostConstruct
     public void newClient() {
-        client = ClientBuilder.newClient();
+        client = ClientBuilder.newClient().register(new JwtClientFilter(token));
     }
 
     public Optional<Address> find(CustomerNumber customerNumber) {
