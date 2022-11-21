@@ -87,6 +87,11 @@ public class DeliveryAddressRepository {
         if (response.getStatus() == Response.Status.OK.getStatusCode()) {
             return;
         }
+        if (response.getStatus() == Response.Status.UNAUTHORIZED.getStatusCode()
+            || response.getStatus() == Response.Status.FORBIDDEN.getStatusCode()) {
+
+            throw new SecurityException(Integer.toString(response.getStatus()));
+        }
         if (!response.hasEntity()) {
             throw new ValidationException("invalid address");
         }

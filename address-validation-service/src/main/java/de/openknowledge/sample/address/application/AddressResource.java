@@ -22,6 +22,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -43,6 +44,7 @@ import de.openknowledge.sample.address.domain.City;
  */
 @ApplicationScoped
 @Path("/valid-addresses")
+@RolesAllowed("address-validation")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class AddressResource {
