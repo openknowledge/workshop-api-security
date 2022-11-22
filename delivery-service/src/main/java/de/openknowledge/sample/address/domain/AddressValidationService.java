@@ -54,6 +54,11 @@ public class AddressValidationService {
     String authenticationServiceUrl;
 
     @Inject
+    @ConfigProperty(name = "address-validation.clientid")
+    String addressValidationClientId;
+
+
+    @Inject
     @ConfigProperty(name = "address-validation.secret")
     String addressValidationSecret;
 
@@ -88,7 +93,7 @@ public class AddressValidationService {
             .path(AUTHENTICATION_PATH)
             .request(MediaType.APPLICATION_FORM_URLENCODED)
             .post(Entity
-            .form(new Form("client_id", "address-validation")
+            .form(new Form("client_id", addressValidationClientId)
             .param("client_secret", addressValidationSecret)
             .param("grant_type", "client_credentials")));
         return (String)tokenResponse.readEntity(Map.class).get("access_token");
