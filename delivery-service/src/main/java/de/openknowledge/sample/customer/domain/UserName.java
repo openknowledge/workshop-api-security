@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 open knowledge GmbH
+ * Copyright 2022 open knowledge GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,36 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.openknowledge.sample.address.domain;
+package de.openknowledge.sample.customer.domain;
 
 import static org.apache.commons.lang3.Validate.notBlank;
 
 import javax.json.bind.adapter.JsonbAdapter;
 import javax.json.bind.annotation.JsonbTypeAdapter;
 
-import de.openknowledge.sample.address.domain.CustomerNumber.Adapter;
+import de.openknowledge.sample.customer.domain.UserName.Adapter;
 
 @JsonbTypeAdapter(Adapter.class)
-public class CustomerNumber {
+public class UserName {
 
-    private String number;
+    private String name;
 
-    protected CustomerNumber() {
+    protected UserName() {
         // for frameworks
     }
 
-    public CustomerNumber(String number) {
-        this.number = notBlank(number, "number may not be empty").trim();
+    public UserName(String name) {
+        this.name = notBlank(name, "name may not be empty").trim();
+    }
+
+    public static UserName valueOf(String value) {
+        return new UserName(value);
     }
 
     @Override
     public String toString() {
-        return number;
+        return name;
     }
 
     @Override
     public int hashCode() {
-        return number.hashCode();
+        return name.hashCode();
     }
 
     @Override
@@ -50,28 +54,24 @@ public class CustomerNumber {
         if (this == object) {
             return true;
         }
-
-        if (!(object instanceof CustomerNumber)) {
+        if (!(object instanceof UserName)) {
             return false;
         }
+        UserName userName = (UserName)object;
 
-        CustomerNumber customerNumber = (CustomerNumber)object;
-
-        return toString().equals(customerNumber.toString());
+        return toString().equals(userName.toString());
     }
 
-    public static class Adapter implements JsonbAdapter<CustomerNumber, String> {
+    public static class Adapter implements JsonbAdapter<UserName, String> {
 
         @Override
-        public CustomerNumber adaptFromJson(String number) throws Exception {
-            return new CustomerNumber(number);
+        public UserName adaptFromJson(String name) throws Exception {
+            return new UserName(name);
         }
 
         @Override
-        public String adaptToJson(CustomerNumber number) throws Exception {
-            return number.toString();
+        public String adaptToJson(UserName name) throws Exception {
+            return name.toString();
         }
-
     }
-
 }

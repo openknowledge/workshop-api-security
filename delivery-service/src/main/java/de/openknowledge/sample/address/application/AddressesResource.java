@@ -35,7 +35,10 @@ import javax.ws.rs.core.UriInfo;
 import de.openknowledge.sample.address.domain.Address;
 import de.openknowledge.sample.address.domain.AddressRepository;
 import de.openknowledge.sample.address.domain.AddressValidationService;
-import de.openknowledge.sample.address.domain.CustomerNumber;
+import de.openknowledge.sample.address.security.Read;
+import de.openknowledge.sample.address.security.Update;
+import de.openknowledge.sample.address.security.User;
+import de.openknowledge.sample.customer.domain.CustomerNumber;
 
 /**
  * RESTFul endpoint for delivery addresses
@@ -55,14 +58,16 @@ public class AddressesResource {
     private AddressRepository addressRepository;
 
     @GET
+    @Read
     @Path("/{customerNumber}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Address getAddress(@PathParam("customerNumber") CustomerNumber number) {
+    public Address getAddress(@PathParam("customerNumber") @User CustomerNumber number) {
         LOG.info("RESTful call 'GET address'");
         return addressRepository.find(number).orElseThrow(NotFoundException::new);
     }
 
     @POST
+    @Update
     @Path("/{customerNumber}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response setAddress(
