@@ -62,6 +62,6 @@ public class CustomerRepository {
     }
 
     public Optional<Customer> find(CustomerNumber customerNumber) {
-        return Optional.ofNullable(customers.get(customerNumber));
+        return Optional.ofNullable(customers.get(customerNumber)).map(Customer::clearAddresses);
     }
 }

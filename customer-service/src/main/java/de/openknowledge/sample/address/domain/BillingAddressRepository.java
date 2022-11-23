@@ -19,6 +19,7 @@ import static javax.ws.rs.client.Entity.entity;
 import static javax.ws.rs.core.Response.Status.Family.SUCCESSFUL;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
@@ -65,17 +66,29 @@ public class BillingAddressRepository {
             .path(customerNumber.toString())
             .request(MediaType.APPLICATION_JSON)
             .get())
-            .filter(r -> r.getStatusInfo().getFamily() == SUCCESSFUL)
+            .filter(successfulResponse())
             .filter(Response::hasEntity)
             .map(r -> r.readEntity(Address.class));
     }
 
     public void update(CustomerNumber customerNumber, Address billingAddress) {
         LOG.info("update billing address at " + billingServiceUrl);
-        client.target(billingServiceUrl)
+        Response response = client.target(billingServiceUrl)
             .path(BILLING_ADDRESSES_PATH)
             .path(customerNumber.toString())
             .request(MediaType.APPLICATION_JSON)
             .post(entity(billingAddress, MediaType.APPLICATION_JSON_TYPE));
+        validResponse(response);
+    }
+
+    private Predicate<? super Response> successfulResponse() {
+        return response -> validResponse(response).getStatusInfo().getFamily() == SUCCESSFUL;
+    }
+
+    private Response validResponse(Response response) {
+        if (response.getStatus() == Response.Status.FORBIDDEN.getStatusCode()) {
+            throw new SecurityException();
+        }
+        return response;
     }
 }

@@ -34,10 +34,10 @@ import javax.ws.rs.core.UriInfo;
 
 import de.openknowledge.sample.address.domain.Address;
 import de.openknowledge.sample.address.domain.AddressRepository;
-import de.openknowledge.sample.address.domain.CustomerNumber;
 import de.openknowledge.sample.address.security.Read;
 import de.openknowledge.sample.address.security.Update;
 import de.openknowledge.sample.address.security.UserId;
+import de.openknowledge.sample.customer.domain.CustomerNumber;
 
 /**
  * RESTFul endpoint for delivery addresses

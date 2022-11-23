@@ -25,6 +25,8 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 
+import de.openknowledge.sample.customer.domain.CustomerNumber;
+
 /**
  * Addresses repository
  */

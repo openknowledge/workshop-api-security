@@ -20,6 +20,7 @@ import static javax.ws.rs.core.Response.Status.Family.SUCCESSFUL;
 
 import java.io.StringReader;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
@@ -67,7 +68,7 @@ public class DeliveryAddressRepository {
             .path(customerNumber.toString())
             .request(MediaType.APPLICATION_JSON)
             .get())
-            .filter(r -> r.getStatusInfo().getFamily() == SUCCESSFUL)
+            .filter(successfulResponse())
             .filter(Response::hasEntity)
             .map(r -> r.readEntity(Address.class));
     }
@@ -81,6 +82,15 @@ public class DeliveryAddressRepository {
             .request(MediaType.APPLICATION_JSON)
             .post(entity(deliveryAddress, MediaType.APPLICATION_JSON_TYPE));
         handleValidationError(response);
+    }
+
+    private Predicate<? super Response> successfulResponse() {
+        return response -> {
+            if (response.getStatus() == Response.Status.FORBIDDEN.getStatusCode()) {
+                throw new SecurityException();
+            }
+            return response.getStatusInfo().getFamily() == SUCCESSFUL;
+        };
     }
 
     private void handleValidationError(Response response) {
