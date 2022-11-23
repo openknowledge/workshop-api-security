@@ -15,7 +15,7 @@ docker compose up --build
 
 from within the folder you cloned the repository.
 
-# Exercise JWT
+# Exercise Domain Object Security
 
 You can access the keycloak authentication server via http://localhost:9191/auth/admin/
 

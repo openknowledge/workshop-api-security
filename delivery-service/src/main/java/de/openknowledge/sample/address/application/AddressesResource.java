@@ -37,7 +37,7 @@ import de.openknowledge.sample.address.domain.AddressRepository;
 import de.openknowledge.sample.address.domain.AddressValidationService;
 import de.openknowledge.sample.address.security.Read;
 import de.openknowledge.sample.address.security.Update;
-import de.openknowledge.sample.address.security.User;
+import de.openknowledge.sample.address.security.UserId;
 import de.openknowledge.sample.customer.domain.CustomerNumber;
 
 /**
@@ -61,7 +61,7 @@ public class AddressesResource {
     @Read
     @Path("/{customerNumber}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Address getAddress(@PathParam("customerNumber") @User CustomerNumber number) {
+    public Address getAddress(@PathParam("customerNumber") @UserId CustomerNumber number) {
         LOG.info("RESTful call 'GET address'");
         return addressRepository.find(number).orElseThrow(NotFoundException::new);
     }
@@ -71,7 +71,7 @@ public class AddressesResource {
     @Path("/{customerNumber}")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response setAddress(
-        @PathParam("customerNumber") CustomerNumber customerNumber,
+        @PathParam("customerNumber") @UserId CustomerNumber customerNumber,
         Address address,
         @Context UriInfo uri) {
 

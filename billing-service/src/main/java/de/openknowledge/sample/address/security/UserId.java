@@ -22,5 +22,5 @@ import org.apache.deltaspike.security.api.authorization.SecurityParameterBinding
 
 @SecurityParameterBinding
 @Retention(RetentionPolicy.RUNTIME)
-public @interface User {
+public @interface UserId {
 }
