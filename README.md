@@ -15,15 +15,17 @@ docker compose up --build
 
 from within the folder you cloned the repository.
 
-# Exercises
+# Exercise Rate Limiting
 
-You find the exercises in the corresponding branches
+## Fetch all customers via the api gateway
 
-* [Exercise JWT](https://github.com/openknowledge/workshop-api-security/tree/jwt)
-* [Exercise Client Credential Flow](https://github.com/openknowledge/workshop-api-security/tree/client-credential)
-* [Exercise Excessive Data Exposure](https://github.com/openknowledge/workshop-api-security/tree/excessive-data-exposure)
-* [Exercise Rate Limiting](https://github.com/openknowledge/workshop-api-security/tree/rate-limiting)
-* [Exercise Domain Object Security](https://github.com/openknowledge/workshop-api-security/tree/domain-object-security)
+Perform the following request to fetch all customers:
+
+```
+GET http://localhost:8000/customers
+```
+
+Hit the SEND button very quickly multiple times to see the status code 503 - Service temporarily unavailable.
 
 ## Troubleshooting (Mac M1 processor)
 
