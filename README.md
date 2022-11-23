@@ -15,7 +15,7 @@ docker compose up --build
 
 from within the folder you cloned the repository.
 
-# Exercise JWT
+# Exercise Client Credentials
 
 You can access the keycloak authentication server via http://localhost:9191/auth/admin/
 
@@ -46,29 +46,53 @@ username:erika
 password:erika123
 ```
 
-## Analyse the token
+## Validate an address
 
-The received token is base64-encoded. You can analyse it on [_JWT.io_](https://jwt.io)
+You can validate an address via the following endpoint:
 
-## Call the application
-
-With the following requests you can get a list of all users (only allowed as admin):
 ```
-GET http://localhost:4000/customers
+POST http://localhost:4003/valid-addresses
+```
+
+Headers:
+```
+Content-Type: application/json
+Authorization: Bearer <token>
+```
+Body:
+```
+{
+    "recipient": "Erika Mustermann",
+    "street": {
+        "name": "Poststraße",
+        "number": "1"
+    },
+    "city": "26122 Oldenburg"
+}
+```
+
+This request will fail, since erika is not allowed to validate addresses anymore.
+
+## Receiving client credential token
+
+Validation of addresses is only allowed for machine-to-machine calls.
+Receive a valid token via the following request:
+
+```
+POST http://localhost:9191/auth/realms/master/protocol/openid-connect/token
 ```
 Header:
 ```
-Authorization: Bearer <token>
+Content-Type: application/x-www-form-urlencoded
+```
+Body:
+```
+grant_type:client_credentials
+client_id:address-validation
+client_secret:e7bea4b5-7c65-4d78-9404-0646cd198150
 ```
 
-With the following requests you can get the details of a specific user:
-```
-GET http://localhost:4000/customers/<customer number>
-```
-Header:
-```
-Authorization: Bearer <token>
-```
+Try the address validation with this token and see, that it now works.
 
 ## Troubleshooting (Mac M1 processor)
 
