@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "c19dbcad-1fb9-44b8-97b5-0391bbfc7a83",
+		"name": "API Security Workshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1166280"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "onlineshop",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "erika",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "erika123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9191/auth/realms/master/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"auth",
+						"realms",
+						"master",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customers",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ5TUk3RTJ5NGtSRVlnTExTTDJUVTRwQXpxWGZ2b2FRT3RISWFpQ3UwTnI0In0.eyJleHAiOjE2NjkyMjMzNjQsImlhdCI6MTY2OTIyMzMwNCwianRpIjoiMGYxMTg0NDItYjJiOS00ZTdiLTk5ZDctNDdkMjRhNmZjZmM5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MTkxL2F1dGgvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJiMWJlMjliMi02ZWMxLTRlY2ItYmU3MC0xYWE4OGExNmNlNDYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJvbmxpbmVzaG9wIiwic2Vzc2lvbl9zdGF0ZSI6ImIwODU2NzFhLWYyNmEtNDlhYi04Mjk0LTU1N2I2OTg5NDRkYSIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJ1cG4iOiJlcmlrYSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6IkVyaWthIE11c3Rlcm1hbm4iLCJncm91cHMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXSwicHJlZmVycmVkX3VzZXJuYW1lIjoiZXJpa2EiLCJnaXZlbl9uYW1lIjoiRXJpa2EiLCJmYW1pbHlfbmFtZSI6Ik11c3Rlcm1hbm4ifQ.NwIncyz4YVZwZH_C315aBuQIi441dOMfXoFC8Che3uQqpOWuhk2PjSSKkDOFQu6rCFMh7uYHmpxt28sVk4Hgv0gQnU47SUCDRlTkgvKSQOrm13cVC-RBqvJmmKMeay8yP5ph8d_OLONOCdH06IR4rvlDjmgLlLvtZHiGAEU0bi8mfjguLzFDuW-cE3kz9csGkrDT_5P3ZDOpdxIHc0RyKdz4wepRylK-Or2maXljetr1WvxbQGkcZUpYgtPT98BK7iQjBlHbB_uQgZK-9f80w2WocrdbuBLE28frsI8xHsmONmytU-B717X7UL_qlA0tL7-12a1R4lCJoVr3L5vtzw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/customers/0816",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"customers",
+						"0816"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Addresses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ5TUk3RTJ5NGtSRVlnTExTTDJUVTRwQXpxWGZ2b2FRT3RISWFpQ3UwTnI0In0.eyJleHAiOjE2NjkyMjQzNzQsImlhdCI6MTY2OTIyNDMxNCwianRpIjoiZDJlYmRiNDUtMDY4MS00ZThhLTlkZWItNWY2ZDM0MWJlNTUwIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MTkxL2F1dGgvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJiMWJlMjliMi02ZWMxLTRlY2ItYmU3MC0xYWE4OGExNmNlNDYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJvbmxpbmVzaG9wIiwic2Vzc2lvbl9zdGF0ZSI6IjY5MDEyMzY5LTY5NmItNDI1Ni04ZTQ4LWI3ZTY3ZGE5MWRiNSIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJ1cG4iOiJlcmlrYSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6IkVyaWthIE11c3Rlcm1hbm4iLCJncm91cHMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXSwicHJlZmVycmVkX3VzZXJuYW1lIjoiZXJpa2EiLCJnaXZlbl9uYW1lIjoiRXJpa2EiLCJmYW1pbHlfbmFtZSI6Ik11c3Rlcm1hbm4ifQ.SBx4LTQjJiORXx2wlS7sdFuCtPWjYAyYXCsgOhQ6Wm-aeaw7SIf3b5O5uIuBAxRnkRNggFgLLU66jESMJGtLfINLCD0mE3zzO8U3RIKAJoTsEXClXgHjSLKC0LL8Rq8c6mXJQmFhgxZQ13MpQ8TroMZjwZlP1ghKhSuemEvBDtOSTQjlozGJgr7DK4UX3zFVJURWDVopxwnWbjOed0oweLpxhYu_nmquurEg_DegzKBPgyOiHk4xAp9XluVo0i4eqW4nZlSPyaGJdjRMBfF4IO9i3t7nEJn2bu0rFkRIMiaqKCjUfXinT8mvbpkAAXW2FUswNA0m6SOPg9CnoV0CiA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4002/delivery-addresses/0815",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"delivery-addresses",
+						"0815"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Address",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ5TUk3RTJ5NGtSRVlnTExTTDJUVTRwQXpxWGZ2b2FRT3RISWFpQ3UwTnI0In0.eyJleHAiOjE2NjkyMjM5NDIsImlhdCI6MTY2OTIyMzg4MiwianRpIjoiZDQ3OWZjOGEtZGQ5Ny00Y2EzLWE1MGYtZDhlYmE5ZTI1MGY1IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MTkxL2F1dGgvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJiMWJlMjliMi02ZWMxLTRlY2ItYmU3MC0xYWE4OGExNmNlNDYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJvbmxpbmVzaG9wIiwic2Vzc2lvbl9zdGF0ZSI6ImE3M2E3OTliLTQ4ZGMtNDVmZS1iYjUwLWE3OGJlZTdiYWFkNyIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJ1cG4iOiJlcmlrYSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6IkVyaWthIE11c3Rlcm1hbm4iLCJncm91cHMiOlsib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXSwicHJlZmVycmVkX3VzZXJuYW1lIjoiZXJpa2EiLCJnaXZlbl9uYW1lIjoiRXJpa2EiLCJmYW1pbHlfbmFtZSI6Ik11c3Rlcm1hbm4ifQ.R0DLGd8b5mHcuKDZoguEv9cnl3t3d3ptogsqI09X5MbQdBhX9CG7Zo7nxljaRMeQ2uvWz4q-NxZeBKCPi10oyjNz5_MPxgk3E7cQNqG-jZ2rHrcnGqB6TKjjWf6E2I2zlK8WDBvPCtrBizLIljRJV5DysB9KOShYqplHX_oYWGkf_8J_cJZ5UdOQxvA8hKR7oI5Ky-dvsu3udfOutLMyqYSP1YsfOP2TsQN_YneSPePaR5CsJqpIqLpHmEzuu-Td-SD2wyrXd-AQy36k22eQqdzfEmctn9ggUVfRuPdkhAhfd80_wRGMMwKkANsPTb5MXRgnn5c7wGZda4P9GD8C8A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recipient\": \"Erika Mustermann\",\n    \"street\": {\n        \"name\": \"Poststraße\",\n        \"number\": \"4\"\n    },\n    \"city\": \"26122 Oldenburg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4002/delivery-addresses/0815",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4002",
+					"path": [
+						"delivery-addresses",
+						"0815"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Validate Address",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ5TUk3RTJ5NGtSRVlnTExTTDJUVTRwQXpxWGZ2b2FRT3RISWFpQ3UwTnI0In0.eyJleHAiOjE2NjkyMjAyNjIsImlhdCI6MTY2OTIyMDIwMiwianRpIjoiZGM2NzcwZDYtNzQxNS00NmExLTk3ZDctYWI5MWU5OGUxZDc4IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo5MTkxL2F1dGgvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiIwYWFiYjM3MC1lNTkwLTQyZWYtOWRlMy00NmMxZGUwNmI0ZWYiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJhZGRyZXNzLXZhbGlkYXRpb24iLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImFkZHJlc3NlcyIsImRlZmF1bHQtcm9sZXMtbWFzdGVyIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsImNsaWVudEhvc3QiOiIxNzIuMTguMC4xIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJjbGllbnRJZCI6ImFkZHJlc3MtdmFsaWRhdGlvbiIsImdyb3VwcyI6WyJhZGRyZXNzLXZhbGlkYXRpb24iXSwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LWFkZHJlc3MtdmFsaWRhdGlvbiIsImNsaWVudEFkZHJlc3MiOiIxNzIuMTguMC4xIn0.ag6KKqNcEjbZv0fcvmK-2I9iUKH8QX8Z_9Vl5IqJxtYO0qyMy2eSlIwHYe2HIyVusfvygjAWeYCiV3kg18tct_JIOQwzmX7xLSntt1zKrUT3sggUJGcG8QIvv67fi6tbDSiwh3JExqc3vX1fyqT-9x7kZEnhw_7sbBXsqjjHWbkaKQ2WrY17NSRZftRLTsc6tGFgGjabdxWrl13c2reo_UYsQYIJSrdpx9jtFZs9vOiXNn1HkSjPI0cDgPErHT2bTeebiXDijP-xRckww6DBFQNfTCeFCtwUJ8SGG9tye3gTb5q-3kBWKYghDwIYT90kcOI-gXkTQ1FHm3QwdjbqmA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"recipient\": \"Erika Mustermann\",\n    \"street\": {\n        \"name\": \"Poststraße\",\n        \"number\": \"1\"\n    },\n    \"city\": \"26122 Oldenburg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4003/valid-addresses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4003",
+					"path": [
+						"valid-addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get token M2M",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "address-validation",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "e7bea4b5-7c65-4d78-9404-0646cd198150",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9191/auth/realms/master/protocol/openid-connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"auth",
+						"realms",
+						"master",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
