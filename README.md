@@ -28,7 +28,7 @@ The following users with their passwords and roles are available:
 * max / max123 (role user)
 * james / james123 (role user)
 
-## Receiving a token 
+## Login as erika
 
 Use the following request to receive a token:
 ```
@@ -46,29 +46,29 @@ username:erika
 password:erika123
 ```
 
-## Analyse the token
+## Fetch erikas details
 
-The received token is base64-encoded. You can analyse it on [_JWT.io_](https://jwt.io)
-
-## Call the application
-
-With the following requests you can get a list of all users (only allowed as admin):
+With the following requests you can fetch the details:
 ```
-GET http://localhost:4000/customers
+GET http://localhost:4000/customers/0816
 ```
 Header:
 ```
 Authorization: Bearer <token>
 ```
 
-With the following requests you can get the details of a specific user:
+## Fetch max's details
+
+With the following requests you can fetch the details of Max:
 ```
-GET http://localhost:4000/customers/<customer number>
+GET http://localhost:4000/customers/0815
 ```
 Header:
 ```
 Authorization: Bearer <token>
 ```
+
+The request will return status code 403 - FORBIDDEN.
 
 ## Troubleshooting (Mac M1 processor)
 
