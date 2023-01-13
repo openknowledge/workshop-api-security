@@ -32,6 +32,6 @@ is not compatible with the new M1 processor of Mac.
 In order to run the samples, you have to build the container from scratch:
 
 ```
-git clone git clone https://github.com/keycloak/keycloak-containers.git keycloak/containers
+git clone https://github.com/keycloak/keycloak-containers.git keycloak/containers
 docker build -t jboss/keycloak:14.0.0 ./keycloak
 ```
