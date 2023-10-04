@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "c19dbcad-1fb9-44b8-97b5-0391bbfc7a83",
-		"name": "API Security Workshop",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1166280"
+		"_postman_id": "54c29245-b63c-410b-95e3-77df546d191e",
+		"name": "Service Security Workshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
