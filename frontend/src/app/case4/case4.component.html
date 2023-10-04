@@ -1,0 +1,86 @@
+<div class="pb-100 pt-50">
+  <div class="center-content">
+    <img src="assets/wilfred-worrior2-quadrat.png" class="avatar vertical-center">
+  </div>
+  <div class="center-content pt-20">
+    <div>
+      <h1 #usernameElement [hidden]="showInputField"></h1>
+    </div>
+  </div>
+
+  <div *ngIf="!showInputField" class="center-content">
+    <button mat-button (click)="editUsername()">Bearbeiten</button>
+    <button mat-button (click)="deleteFromLocalStorage()">Löschen</button>
+  </div>
+
+  <form *ngIf="showInputField" class="center-content pt-20">
+    <mat-form-field>
+      <mat-label><strong>Username</strong></mat-label>
+      <input matInput type="text" [(ngModel)]="username"  *ngIf="showInputField" placeholder="Username">
+    </mat-form-field>
+
+    <button mat-button (click)="saveInLocalStorage()">Speichern</button>
+  </form>
+
+</div>
+
+<mat-divider></mat-divider>
+
+
+<div class="center-content pt-20">
+  <h1>Fall 4: Stored XSS</h1>
+</div>
+<div class="center-content pb-20">
+  <span>
+  Die Nutzereingabe erfolgt über das Inputfeld und wird im LocalStorage gespeichert.
+    Zum Anzeigen des Usernamens wird der Wert aus dem LocalStorage geholt und in einem h1 Element angezeigt
+    Der Zugriff auf das h1 Element erfolgt über eine <a href="https://angular.io/api/core/ViewChildren">View Query</a> des Angular Frameworks - mittels @ViewChild() -
+    Das div Element wird hierbei in einem Objekt vom Typ "ElementRef" in dem Feld "nativeElement" gekapselt.
+ </span>
+</div>
+
+
+<mat-grid-list cols="8" rowHeight="20px">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    Quelle
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    Senke
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="8" rowHeight="20px">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <strong>Inputfeld</strong>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <img src="assets/right-arrow.png" width="80pt">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <strong>LocalStorage</strong>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <img src="assets/right-arrow.png" width="80pt">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <strong>ElementRef</strong>.nativeElement.innerHTML
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-divider></mat-divider>
+
+<div class="center-content pt-50">
+  <p>Beweis:</p>
+</div>
+<div class="center-content">
+  <p>{{proof}}</p>
+</div>
+

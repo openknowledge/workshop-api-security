@@ -16,6 +16,7 @@
 package de.openknowledge.sample.customer.domain;
 
 import static java.lang.String.format;
+import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
 
 import java.util.List;
@@ -38,10 +39,12 @@ public class CustomerRepository {
     private static final AtomicInteger CUSTOMER_NUMBERS = new AtomicInteger(0);
 
     private Map<CustomerNumber, Customer> customers;
+    private Map<CustomerNumber, Map<String, byte []>> images;
 
     @PostConstruct
     public void initialize() {
 
+        images = new ConcurrentHashMap<>();
         customers = new ConcurrentHashMap<>();
         customers.put(new CustomerNumber("0815"),
             new Customer(new CustomerNumber("0815"), new CustomerName("Max Mustermann")));
@@ -61,7 +64,16 @@ public class CustomerRepository {
         customers.put(customer.number, customer);
     }
 
+    public void persistImage(CustomerNumber customerNumber, String fileName, byte[] image) {
+        Map<String, byte []> files = images.computeIfAbsent(customerNumber, customerNumber1 -> new ConcurrentHashMap<>());
+        files.put(fileName, image);
+    }
+
     public Optional<Customer> find(CustomerNumber customerNumber) {
-        return Optional.ofNullable(customers.get(customerNumber));
+        return ofNullable(customers.get(customerNumber));
+    }
+
+    public Optional<byte []> findImage(CustomerNumber customerNumber, String fileName) {
+        return ofNullable(images.get(customerNumber)).flatMap(files -> ofNullable(files.get(fileName)));
     }
 }

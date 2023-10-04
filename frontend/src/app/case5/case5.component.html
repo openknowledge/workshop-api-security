@@ -1,0 +1,8 @@
+<br>
+<br>
+<mat-form-field>
+  <mat-label>Deine Eingabe</mat-label>
+  <input name="input" [(ngModel)]="input" matInput (ngModelChange)="setSafe()">
+</mat-form-field><br>
+<b>Ausgabe:</b><br>
+<div [innerHTML]="safeInput"></div>

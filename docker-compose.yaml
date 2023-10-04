@@ -24,3 +24,8 @@ services:
     build: address-validation-service/
     ports:
       - "4003:8080"
+
+  frontend:
+    build: frontend/
+    ports:
+      - "4200:4200"

@@ -1,0 +1,26 @@
+<!--Self XSS-->
+<h1>Profil bearbeiten</h1>
+
+<img src="assets/kitty.PNG" class="avatar-sm">
+
+
+<div *ngIf="!editing">
+  <b>{{name}}</b><br><br>
+  <button mat-raised-button (click)="navigate()">Go to my website</button>
+  <br><br>
+</div>
+
+<div *ngIf="editing">
+  <mat-form-field>
+    <mat-label><b>Name</b></mat-label>
+    <input matInput type="text" [(ngModel)]="name" placeholder="Enter your name">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-label><b>Website</b></mat-label>
+    <input matInput *ngIf="editing" type="text" [(ngModel)]="dangerousUrl" placeholder="Enter picture url">
+  </mat-form-field>
+</div>
+
+<button (click)="editing=true" *ngIf="!editing" color="primary" mat-raised-button>Bearbeiten</button><br><br>
+<button (click)="saveImageUrl()" *ngIf="editing" color="primary" mat-raised-button>Speichern</button><br><br>

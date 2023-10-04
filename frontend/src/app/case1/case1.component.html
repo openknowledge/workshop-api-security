@@ -1,0 +1,68 @@
+<div class="center-content">
+  <h1>find new catz</h1>
+</div>
+
+<mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="heart"></mat-icon>
+
+<mat-grid-list cols="2" rowHeight="700px">
+  <mat-grid-tile>
+    <div>
+      <a [routerLink]="'/cases/case-1'" [queryParams]="{username: 'Tyson'}">
+        <button mat-raised-button color="{{username==='Tyson' ? 'primary' : ''}}" class="long-btn">
+<!--          <img src="assets/Tyson.png" class="avatar-sm">-->
+          <span>Tyson</span>
+        </button>
+      </a>
+      <br><br>
+      <a [routerLink]="'/cases/case-1'" [queryParams]="{username: 'Wilfred Warrior'}">
+        <button mat-raised-button color="{{username==='Wilfred Warrior' ? 'primary' : ''}}" class="long-btn">
+<!--          <img src="assets/wilfred-worrior2-quadrat.png" class="avatar-sm">-->
+          <span>Wilfred Warrior</span>
+        </button>
+      </a>
+      <br><br>
+      <a [routerLink]="'/cases/case-1'" [queryParams]="{username: 'Grumpy Cat'}">
+        <button mat-raised-button color="{{username==='Grumpy Cat' ? 'primary' : ''}}" class="long-btn">
+<!--          <img src="assets/grumpy.jpg" class="avatar-sm">-->
+          <span>Grumpy Cat</span>
+        </button>
+      </a>
+      <br><br>
+      <a [routerLink]="'/cases/case-1'" [queryParams]="{username: 'Hamilton Hipster Cat'}">
+        <button mat-raised-button color="{{username==='Hamilton Hipster Cat' ? 'primary' : ''}}" class="long-btn">
+<!--          <img src="assets/hamilton.jpg" class="avatar-sm">-->
+          <span>Hamilton Hipster Cat</span>
+        </button>
+      </a>
+      <br><br>
+      <a [routerLink]="'/cases/case-1'" [queryParams]="{username: 'Lil Bub'}">
+        <button mat-raised-button color="{{username==='Lil Bub' ? 'primary' : ''}}" class="long-btn">
+<!--          <img src="assets/lilbub.jpg" class="avatar-sm">-->
+          <span>Lil Bub</span>
+        </button>
+      </a>
+
+    </div>
+
+  </mat-grid-tile>
+  <mat-grid-tile style="border-left: 1px lightgray solid">
+    <div>
+      <div class="center-content">
+        <img src="{{profileData?.image}}" class="avatar">
+      </div>
+      <br>
+      <div class="center-content">
+        <button mat-raised-button color="primary">
+          <img src="assets/email.png">
+          Message Me!
+        </button>
+      </div>
+      <div class="center-content pt-20">
+        <h1 #usernameElement></h1>
+      </div>
+      <p class="center-content">
+        {{profileData?.bio}}
+      </p>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

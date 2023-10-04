@@ -109,6 +109,33 @@ public class CustomerResource {
         deliveryAddressRepository.update(customerNumber, deliveryAddress);
     }
 
+    @GET
+    @Path("/{customerNumber}/images/{fileName}")
+    @Produces("image/*")
+    public Response getImage(
+        @PathParam("customerNumber") CustomerNumber customerNumber, @PathParam("fileName") String fileName) {
+
+        LOG.info("RESTful call 'GET image'");
+        String fileType = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+        if (fileType.equalsIgnoreCase("svg")) {
+            fileType = "svg+xml";
+        }
+        return Response.ok().type("image/" + fileType).entity(
+            customerRepository.findImage(customerNumber, fileName).orElseThrow(customerNotFound(customerNumber))).build();
+    }
+
+    @PUT
+    @Path("/{customerNumber}/images/{fileName}")
+    @Consumes("image/*")
+    public void setImage(
+        @PathParam("customerNumber") CustomerNumber customerNumber,
+        @PathParam("fileName") String fileName, byte[] image) {
+
+        LOG.info("RESTful call 'PUT image'");
+        customerRepository.persistImage(customerNumber, fileName, image);
+    }
+
     private Supplier<NotFoundException> customerNotFound(CustomerNumber number) {
         return () -> new NotFoundException("customer " + number + " not found");
     }

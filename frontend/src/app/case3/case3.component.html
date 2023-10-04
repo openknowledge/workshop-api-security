@@ -1,0 +1,63 @@
+<div class="pb-100 pt-50">
+  <div class="center-content">
+    <img src="assets/wilfred-worrior2-quadrat.png" class="avatar vertical-center">
+  </div>
+  <div class="center-content pt-20">
+    <h1 #usernameElement></h1>
+  </div>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="center-content pt-20">
+  <h1>Fall 3: Reflected XSS</h1>
+</div>
+<div class="center-content pb-20">
+  <span>
+  Mittel URLFragment wird der Wert für die ID eines Nutzers übergeben.
+    Die ID wird in einem h1-Element angezeigt.
+  Der Zugriff auf das HTML Element erfolgt über eine <a href="https://angular.io/api/core/ViewChildren">View Query</a> des Angular Frameworks - also mittels @ViewChild().
+  Das HTML Element wird hierbei in einem Objekt vom Typ "ElementRef" in dem Feld "nativeElement" gekapselt.
+ </span>
+</div>
+
+
+<mat-grid-list cols="5" rowHeight="20px">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    Quelle
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    Senke
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list cols="5" rowHeight="20px">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <strong>ActivatedRoute</strong>.fragment
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <img src="assets/right-arrow.png" width="80pt">
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <strong>ElementRef</strong>.nativeElement.innerHTML
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-divider></mat-divider>
+
+<div class="center-content pt-50">
+  <p>Beweis:</p>
+</div>
+<div class="center-content">
+  <p>{{proof}}</p>
+</div>
+
+<!--SECURE: here the payload gets sanitized-->
+<!--<h1 [innerHTML]="username"></h1>-->
+
+<!--SECURE: here the payload gets sanitized-->
+<!--<h1 innerHTML="{{username}}"></h1>-->
+
+
